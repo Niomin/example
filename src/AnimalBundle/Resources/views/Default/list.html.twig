@@ -2,8 +2,8 @@
 
 {% block body %}
     <h3>Привет, {{ app.user.username }}!</h3>
-    <div>Вот твой зоопарк:</div>
-    {% if animals is defined %}
+    {% if animals is defined and animals is not empty %}
+        <div>Вот твой зоопарк:</div>
         {% for animal in animals %}
             <div>
                 <img src="{{ animal.species.image }}" width="100">
