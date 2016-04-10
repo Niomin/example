@@ -3,3 +3,15 @@ services:
         class: AppBundle\Form\UserRegistration
         tags:
             - { name: form.type, alias: user_registration }
+
+    user.manager:
+        class: Doctrine\ORM\EntityManager
+        factory: ['@doctrine', 'getManagerForClass']
+        arguments:
+            - AppBundle\Entity\User
+
+    user.model:
+        class: AppBundle\Entity\UserModel
+        arguments:
+            - '@security.user_password_encoder.generic'
+            - '@doctrine.orm.entity_manager'

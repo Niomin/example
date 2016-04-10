@@ -9,12 +9,41 @@ use Symfony\Component\HttpFoundation\Request;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="homepage")
+     * @Route("/login", name="login")
      */
-    public function indexAction(Request $request)
+    public function loginAction(Request $request)
     {
-        return $this->render('@AppBundle/index.html.twig', [
-            'form' => $this->createForm('user_registration')->createView(),
+        $authenticationUtils = $this->get('security.authentication_utils');
+
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render(
+            '@App/login.html.twig',
+            [
+                'last_username' => $lastUsername,
+                'error'         => $error,
+            ]
+        );
+    }
+
+    /**
+     * @Route("/register", name="register")
+     */
+    public function registerAction(Request $request)
+    {
+        $form = $this->createForm(get_class($this->get('user.registration.form.type')));
+
+        if ($form->handleRequest($request)->isValid()) {
+
+            $user = $form->getData();
+            $this->get('user.model')->persistUser($user);
+
+        }
+
+        return $this->render('@App/register.html.twig', [
+            'registrationForm' => $form->createView(),
         ]);
     }
 }

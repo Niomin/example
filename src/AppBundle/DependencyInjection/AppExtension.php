@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AppBundle\DependencyInjection;
 
 use Symfony\Component\Config\FileLocator;
@@ -14,7 +13,6 @@ class AppExtension extends Extension
     {
         $loader = new YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('config.yml');
-
     }
 
 }
