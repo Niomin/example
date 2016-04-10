@@ -23,7 +23,7 @@ class Color
     private $title;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string")
      */
     private $code;
 

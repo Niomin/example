@@ -14,6 +14,9 @@
     </head>
     <body>
         {% block body %}{% endblock %}
+        {% if app.user is not empty %}
+            <a href="{{ url('logout') }}">Выйти</a>
+        {% endif %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>

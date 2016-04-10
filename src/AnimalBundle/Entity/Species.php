@@ -24,11 +24,25 @@ class Species
     private $title;
 
     /**
+     * @var string
+     * @ORM\Column(type="string")
+     */
+    private $image;
+
+    /**
      * @return string
      */
     public function getTitle()
     {
         return $this->title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getImage()
+    {
+        return $this->image;
     }
 
     /**
@@ -47,5 +61,5 @@ class Species
         return $this->id;
     }
 
-    
+
 }

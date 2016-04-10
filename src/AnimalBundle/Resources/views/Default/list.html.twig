@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h3>Привет, {{ app.user.username }}!</h3>
+    <div>Вот твой зоопарк:</div>
+    {% if animals is defined %}
+        {% for animal in animals %}
+            <div>
+                <img src="{{ animal.species.image }}" width="100">
+                <span style="color: {{ animal.color.code }}">{{ animal.name }}</span>
+                <span class="remove-animal" title="Удалить животное">X</span>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div>У вас нет животных :(</div>
+    {% endif %}
+    <div><a href="{{ url('animal_add') }}">Добавить</a></div>
+
+    <style type="text/css">
+        .remove-animal {
+            color: red;
+        }
+    </style>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        (function() {
+            var removeElements = document.getElementsByClassName('remove-animal'), l = removeElements.length, i;
+            for (i = 0; i < l; i++) {
+                removeElements[i].addEventListener('click', removeAnimal);
+            }
+            function removeAnimal(e) {
+                alert('Эй! Это бесчеловечно. Не обижайте животинку, лучше покормите.');
+                e.target.parentNode.removeChild(e.target);
+            }
+        })();
+    </script>
+{% endblock %}

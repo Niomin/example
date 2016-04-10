@@ -1,0 +1,17 @@
+services:
+    animal.add.form.type:
+        class: AnimalBundle\Form\AnimalForm
+        tags:
+            - { name: form.type, alias: animal }
+
+    animal.manager:
+        class: Doctrine\ORM\EntityManager
+        factory: ['@doctrine', 'getManagerForClass']
+        arguments:
+            - AnimalBundle\Entity\Animal
+
+    animal.model:
+        class: AnimalBundle\Entity\AnimalModel
+        arguments:
+            - '@animal.manager'
+            - '@security.token_storage'

@@ -11,7 +11,7 @@ class DefaultController extends Controller
     /**
      * @Route("/login", name="login")
      */
-    public function loginAction(Request $request)
+    public function loginAction()
     {
         $authenticationUtils = $this->get('security.authentication_utils');
 
@@ -46,4 +46,10 @@ class DefaultController extends Controller
             'registrationForm' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/logout", name="logout")
+     */
+    public function logoutAction()
+    {}
 }

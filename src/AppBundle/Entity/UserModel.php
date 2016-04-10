@@ -1,6 +1,5 @@
 <?php
 
-
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
@@ -26,6 +25,7 @@ class UserModel
             ->encodePassword($user, $user->getPlainPassword());
 
         $user->setPassword($password);
+        $user->setEnabled(true);
 
         $this->em->persist($user);
         $this->em->flush($user);
