@@ -61,5 +61,11 @@ class Species
         return $this->id;
     }
 
-
+    /**
+     * @param string $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
 }
