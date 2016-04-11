@@ -30,7 +30,8 @@ class BaseFixtures implements FixtureInterface
     private function loadSpecieses(ObjectManager $em)
     {
         $specieses = [['Кошка', 'https://pp.vk.me/c615727/v615727050/5a59/w77Fa4TBDXY.jpg'],
-            ['Собака', 'http://boobooka.com/wp-content/uploads/2014/02/phoca_thumb_l_dog-pooping.gif']];
+            ['Собака', 'http://boobooka.com/wp-content/uploads/2014/02/phoca_thumb_l_dog-pooping.gif'],
+            ['Поняша', 'https://pp.vk.me/c630021/v630021663/23dc2/MMg3_-enAQY.jpg']];
         foreach ($specieses as $s) {
             $species = new Species();
             $species->setTitle($s[0]);
